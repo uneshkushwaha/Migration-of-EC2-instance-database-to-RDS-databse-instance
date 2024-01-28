@@ -67,8 +67,8 @@ SELECT * FROM table1;
         -credential settings i.e master username and password
         -Instance configuration: Burstable Classes
         - storage: gp2
-        - Availbilty:
-        - connectivity: don't connect ec2
+        - Availbilty: Multi-AZ deployment as it is 
+        - connectivity: don't connect ec2 compute rsource 
         - vpc and subnet groups, public access= no, vpc security group, A.Z= no preference, advance configuration i.e port number, Database authentication:password
         - Monitoring:enable
         - additional configuration:
