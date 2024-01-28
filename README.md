@@ -1,8 +1,8 @@
 # Migration-of-EC2-instance-database-to-RDS-databse-instance
  We are Migrating  MariaDB database created on  EC2 instance database to RDS database instance in different multiple zone
 
-
-
+      VideoLinK:https://drive.google.com/file/d/16skpaT53i4xs8yYMaOjsSNERE8M8j2kM/view?usp=sharing
+ 
  Step1: Created a VPC name 'first-VPC' 
  Step2: three subnets named 'first-subnet', '1b-subnet2', '1c-subnet3' are created in three different availbility zone i.e us-east-1a, us-east1b, us-east1c respectively for the purpose of RDS backup.
  Step3: launched a EC2 instance name 'Database-on-EC2'and  connected to the EC2 instane private ip address.
