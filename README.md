@@ -27,13 +27,12 @@
 ```
            
 ##SET Environmental variables
-
-      ```bash
+ ```bash
               DBName=ec2RDS
               DBPassword=unesh12345
               DBRootPaasword=admin12345
               DBUser=ec2dbuser
-      ```
+ ```
 
             
 ##Database Setup on EC2 Instance:
