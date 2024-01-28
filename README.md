@@ -37,7 +37,7 @@
 
             
 ##Database Setup on EC2 Instance:
-             ```bash      
+```bash      
             echo "CREATE DATABASE ${DBName};" >> /tmp/db.setup
             echo "CREATE USER '${DBUser}' IDENTIFIED BY '${DBPassword}';" >> /tmp/db.setup
             echo "GRANT ALL PRIVILEGES ON *.* TO '${DBUser}'@'%';" >> /tmp/db.setup
@@ -45,7 +45,7 @@
             mysqladmin -u root password "${DBRootPassword}"
             mysql -u root --password="${DBRootPassword}" < /tmp/db.setup
             rm /tmp/db.setup
-             ```
+ ```
 
 
 ##Adding some dummy data to the Database inside EC2 instance:
