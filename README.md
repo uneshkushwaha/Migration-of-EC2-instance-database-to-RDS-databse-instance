@@ -27,6 +27,7 @@
 ```
            
 ##SET Environmental variables
+
       ```bash
               DBName=ec2RDS
               DBPassword=unesh12345
@@ -36,6 +37,7 @@
 
             
 ##Database Setup on EC2 Instance:
+
              ```bash
              
             echo "CREATE DATABASE ${DBName};" >> /tmp/db.setup
