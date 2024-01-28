@@ -15,15 +15,17 @@
   yum -y install mariadb-server wget  
   systemctl enable mariab
   systemctl start mariadb
-  yum -y update  ```
+  yum -y update
+ 
 
        -It takes full administrative privileges from root user to modify,create and install software after identifying password prompt.It changes symbol to #
        - Yum package manager is used to install two packages i.e mariadb-server and wget which is a command line tool for downloading files from the internet. -y automatically answer yes
        -Configures MariaDB to start automatically at system boot.
        -Starts the MariaDB service immediately.
        -Updates all installed packages on the system to their latest versions
+```
            
-###SET Environmental variables
+##SET Environmental variables
       ```bash
               DBName=ec2RDS
               DBPassword=unesh12345
@@ -44,7 +46,7 @@
 ```
 
 
-###Adding some dummy data to the Database inside EC2 instance:
+##Adding some dummy data to the Database inside EC2 instance:
 ```bash
 mysql -u <username> -p <databasename>
 USE ec2RDS;
@@ -55,6 +57,7 @@ SELECT * FROM table1;
 
 
  ###Go to Amazon RDS and setup the RDS database instance
+ 
    -create a subnet group where three subnet with their respective AZ shows for multi-AZ backup purpose
    - click on Database
        -choose: Standard
@@ -77,7 +80,7 @@ SELECT * FROM table1;
 
 
 
-###Migration of Database in EC2 Instance to RDS Database:
+##Migration of Database in EC2 Instance to RDS Database:
 
 ```bash
      mysqldump -u <username> -p <databasename> ec2db.sql
