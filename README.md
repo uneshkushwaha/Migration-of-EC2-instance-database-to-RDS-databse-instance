@@ -11,6 +11,7 @@
               ##Begin Configuration:
               
  ```bash
+
   sudo su-
   yum -y install mariadb-server wget  
   systemctl enable mariab
@@ -44,10 +45,11 @@
             mysqladmin -u root password "${DBRootPassword}"
             mysql -u root --password="${DBRootPassword}" < /tmp/db.setup
             rm /tmp/db.setup
-```
+             ```
 
 
 ##Adding some dummy data to the Database inside EC2 instance:
+
 ```bash
 mysql -u <username> -p <databasename>
 USE ec2RDS;
