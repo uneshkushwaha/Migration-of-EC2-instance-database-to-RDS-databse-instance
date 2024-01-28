@@ -1,5 +1,5 @@
 # Migration-of-EC2-instance-database-to-RDS-databse-instance
- We are Migrating  MariaDB database created on  EC2 instance database to RDS database instance in different multiple zone
+## We are Migrating  MariaDB database created on  EC2 instance database to RDS database instance in different multiple zone
 
       VideoLinK:https://drive.google.com/file/d/16skpaT53i4xs8yYMaOjsSNERE8M8j2kM/view?usp=sharing
  
@@ -8,13 +8,14 @@
  Step3: launched a EC2 instance name 'Database-on-EC2'and  connected to the EC2 instane private ip address.
 
  #Creation of MariaDB database on the EC2 instance
-              Begin Configuration:
+              ##Begin Configuration:
               
-  #step1: sudo su-
-  #STEP2: yum -y install mariadb-server wget  
-  #STEP3: systemctl enable mariab
-  #STEP4: systemctl start mariadb
-  #STEP5: yum -y update:
+ ```bash
+  sudo su-
+  yum -y install mariadb-server wget  
+  systemctl enable mariab
+  systemctl start mariadb
+  yum -y update  ```
 
        -It takes full administrative privileges from root user to modify,create and install software after identifying password prompt.It changes symbol to #
        - Yum package manager is used to install two packages i.e mariadb-server and wget which is a command line tool for downloading files from the internet. -y automatically answer yes
@@ -23,13 +24,16 @@
        -Updates all installed packages on the system to their latest versions
            
    #SET Environmental variables
+```bash
         DBName=ec2RDS
         DBPassword=unesh12345
         DBRootPaasword=admin12345
         DBUser=ec2dbuser
+```
 
             
              Database Setup on EC2 Instance:
+             ```bash
 echo "CREATE DATABASE ${DBName};" >> /tmp/db.setup
 echo "CREATE USER '${DBUser}' IDENTIFIED BY '${DBPassword}';" >> /tmp/db.setup
 echo "GRANT ALL PRIVILEGES ON *.* TO '${DBUser}'@'%';" >> /tmp/db.setup
@@ -37,15 +41,17 @@ echo "FLUSH PRIVILEGES;" >> /tmp/db.setup
 mysqladmin -u root password "${DBRootPassword}"
 mysql -u root --password="${DBRootPassword}" < /tmp/db.setup
 rm /tmp/db.setup
+```
 
 
         Adding some dummy data to the Database inside EC2 instance:
+```bash
 mysql -u <username> -p <databasename>
 USE ec2RDS;
 CREATE TABLE table1 (id INT, name VARCHAR(45));
 INSERT INTO table1 VALUES(1, 'Allice'), (2, 'Ross Linn'), (1, 'Broda V'), (2, 'Annie Marrie');
 SELECT * FROM table1;
-
+```
 
 
  Go to Amazon RDS and setup the RDS database instance
@@ -72,6 +78,8 @@ SELECT * FROM table1;
 
 
 Migration of Database in EC2 Instance to RDS Database:
+
+```bash
     STEP1:  mysqldump -u <username> -p <databasename> ec2db.sql
 
       creating backup database named 'ecRDS' using the MYSQL utility mysqldump. database is saved on ec2db.sql
@@ -96,6 +104,7 @@ Migration of Database in EC2 Instance to RDS Database:
   STEP6: SELECT * FROM table1;
 
            -congrats your database from ec2 instance is migrated RDS databse instance
+```
 
 
 
