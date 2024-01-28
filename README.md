@@ -37,9 +37,7 @@
 
             
 ##Database Setup on EC2 Instance:
-
-             ```bash
-             
+             ```bash      
             echo "CREATE DATABASE ${DBName};" >> /tmp/db.setup
             echo "CREATE USER '${DBUser}' IDENTIFIED BY '${DBPassword}';" >> /tmp/db.setup
             echo "GRANT ALL PRIVILEGES ON *.* TO '${DBUser}'@'%';" >> /tmp/db.setup
