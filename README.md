@@ -23,28 +23,28 @@
        -Starts the MariaDB service immediately.
        -Updates all installed packages on the system to their latest versions
            
-   #SET Environmental variables
-```bash
-        DBName=ec2RDS
-        DBPassword=unesh12345
-        DBRootPaasword=admin12345
-        DBUser=ec2dbuser
-```
+###SET Environmental variables
+      ```bash
+              DBName=ec2RDS
+              DBPassword=unesh12345
+              DBRootPaasword=admin12345
+              DBUser=ec2dbuser
+      ```
 
             
-             Database Setup on EC2 Instance:
+###Database Setup on EC2 Instance:
              ```bash
-echo "CREATE DATABASE ${DBName};" >> /tmp/db.setup
-echo "CREATE USER '${DBUser}' IDENTIFIED BY '${DBPassword}';" >> /tmp/db.setup
-echo "GRANT ALL PRIVILEGES ON *.* TO '${DBUser}'@'%';" >> /tmp/db.setup
-echo "FLUSH PRIVILEGES;" >> /tmp/db.setup
-mysqladmin -u root password "${DBRootPassword}"
-mysql -u root --password="${DBRootPassword}" < /tmp/db.setup
-rm /tmp/db.setup
+            echo "CREATE DATABASE ${DBName};" >> /tmp/db.setup
+            echo "CREATE USER '${DBUser}' IDENTIFIED BY '${DBPassword}';" >> /tmp/db.setup
+            echo "GRANT ALL PRIVILEGES ON *.* TO '${DBUser}'@'%';" >> /tmp/db.setup
+            echo "FLUSH PRIVILEGES;" >> /tmp/db.setup
+            mysqladmin -u root password "${DBRootPassword}"
+            mysql -u root --password="${DBRootPassword}" < /tmp/db.setup
+            rm /tmp/db.setup
 ```
 
 
-        Adding some dummy data to the Database inside EC2 instance:
+###Adding some dummy data to the Database inside EC2 instance:
 ```bash
 mysql -u <username> -p <databasename>
 USE ec2RDS;
@@ -54,7 +54,7 @@ SELECT * FROM table1;
 ```
 
 
- Go to Amazon RDS and setup the RDS database instance
+ ###Go to Amazon RDS and setup the RDS database instance
    -create a subnet group where three subnet with their respective AZ shows for multi-AZ backup purpose
    - click on Database
        -choose: Standard
@@ -77,33 +77,26 @@ SELECT * FROM table1;
 
 
 
-Migration of Database in EC2 Instance to RDS Database:
+###Migration of Database in EC2 Instance to RDS Database:
 
 ```bash
-    STEP1:  mysqldump -u <username> -p <databasename> ec2db.sql
+     mysqldump -u <username> -p <databasename> ec2db.sql
+     mysql -h <replace-rds-end-point-here> -P 3306 -u <master username> -p <databsename on RDS>  < ec2db.sql
+     mysql -h <replace-rds-end-point-here> -P 3306 -u <master username> -p
+     SHOW DATABASES;
+     USE <databasename>
+     SELECT * FROM table1;
 
-      creating backup database named 'ecRDS' using the MYSQL utility mysqldump. database is saved on ec2db.sql
-      
-  STEP2: mysql -h <replace-rds-end-point-here> -P 3306 -u <master username> -p <databsename on RDS>  < ec2db.sql
-  
-    connecting RDS database instance with endpoint i.e 'first-rdb-database-1.cls4s2ge8p8q.us-east-1.rds.amazonaws.com' and port number is essential, backup database i.e ec2db.sql is imported on RDS database instance, it prompots for mater passowrd from RDS
-     
-  STEP3: mysql -h <replace-rds-end-point-here> -P 3306 -u <master username> -p
 
-      master username= admin, master password=unesh12345 ,databasename= first_rds_db
-        connected to the RDS databse for futher interacton
+        1. creating backup database named 'ecRDS' using the MYSQL utility mysqldump. database is saved on ec2db.sql
 
-  STEP4: SHOW DATABASES;
+        2. connecting RDS database instance with endpoint i.e 'first-rdb-database-1.cls4s2ge8p8q.us-east-1.rds.amazonaws.com' and port number is essential, backup database i.e ec2db.sql is imported on RDS database instance, it prompots for mater passowrd from RDS ,master username= admin, master password=unesh12345 ,databasename= first_rds_db
 
-                it shows all different  databases names in the RDS instance
-        
-  STEP5: USE <databasenaem>
+        3. connected to the RDS databse for futher interacton
 
-        databasename= first_rds_db
-      
-  STEP6: SELECT * FROM table1;
-
-           -congrats your database from ec2 instance is migrated RDS databse instance
+        4. it shows all different  databases names in the RDS instance
+        5. use only the created database on ec2
+        6. congrats your database from ec2 instance is migrated RDS databse instance
 ```
 
 
