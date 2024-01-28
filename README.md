@@ -18,11 +18,11 @@
   yum -y update
  
 
-       -It takes full administrative privileges from root user to modify,create and install software after identifying password prompt.It changes symbol to #
-       - Yum package manager is used to install two packages i.e mariadb-server and wget which is a command line tool for downloading files from the internet. -y automatically answer yes
-       -Configures MariaDB to start automatically at system boot.
-       -Starts the MariaDB service immediately.
-       -Updates all installed packages on the system to their latest versions
+       1. It takes full administrative privileges from root user to modify,create and install software after identifying password prompt.It changes symbol to #
+       2. Yum package manager is used to install two packages i.e mariadb-server and wget which is a command line tool for downloading files from the internet. -y automatically answer yes
+       3. Configures MariaDB to start automatically at system boot.
+       4. Start the MariaDB service immediately.
+       5.Updates all installed packages on the system to their latest versions
 ```
            
 ##SET Environmental variables
@@ -34,8 +34,9 @@
       ```
 
             
-###Database Setup on EC2 Instance:
+##Database Setup on EC2 Instance:
              ```bash
+             
             echo "CREATE DATABASE ${DBName};" >> /tmp/db.setup
             echo "CREATE USER '${DBUser}' IDENTIFIED BY '${DBPassword}';" >> /tmp/db.setup
             echo "GRANT ALL PRIVILEGES ON *.* TO '${DBUser}'@'%';" >> /tmp/db.setup
@@ -56,27 +57,27 @@ SELECT * FROM table1;
 ```
 
 
- ###Go to Amazon RDS and setup the RDS database instance
- 
-   -create a subnet group where three subnet with their respective AZ shows for multi-AZ backup purpose
-   - click on Database
-       -choose: Standard
-       -Engine Option: MariaDB
-       -Template:free tier
-     *Setting:
-        -type name:
-        -credential settings i.e master username and password
-        -Instance configuration: Burstable Classes
-        - storage: gp2
-        - Availbilty: Multi-AZ deployment as it is 
-        - connectivity: don't connect ec2 compute rsource 
-        - vpc and subnet groups, public access= no, vpc security group, A.Z= no preference, advance configuration i.e port number, Database authentication:password
-        - Monitoring:enable
-        - additional configuration:
-                        inital name: first_rds_db
-                        backup and maintenance : disable, no preference for window
-                        Deletion Protection: disable
-       - LAUNCH RDS INSTANCE
+ ##Go to Amazon RDS and setup the RDS database instance
+
+         -create a subnet group where three subnet with their respective AZ shows for multi-AZ backup purpose
+         - click on Database
+             -choose: Standard
+             -Engine Option: MariaDB
+             -Template:free tier
+           *Setting:
+              -type name:
+              -credential settings i.e master username and password
+              -Instance configuration: Burstable Classes
+              - storage: gp2
+              - Availbilty: Multi-AZ deployment as it is 
+              - connectivity: don't connect ec2 compute rsource 
+              - vpc and subnet groups, public access= no, vpc security group, A.Z= no preference, advance configuration i.e port number, Database authentication:password
+              - Monitoring:enable
+              - additional configuration:
+                              inital name: first_rds_db
+                              backup and maintenance : disable, no preference for window
+                              Deletion Protection: disable
+             - LAUNCH RDS INSTANCE
 
 
 
