@@ -11,30 +11,22 @@
               Begin Configuration:
               
   #step1: sudo su-
-                
-                It takes full administrative privileges from root user to modify,create and install software after identifying password prompt.It changes symbol to #
+  #STEP2: yum -y install mariadb-server wget  
+  #STEP3: systemctl enable mariab
+  #STEP4: systemctl start mariadb
+  #STEP5: yum -y update:
 
- #STEP2: yum -y install mariadb-server wget
- 
-           Yum package manager is used to install two packages i.e mariadb-server and wget which is a command line tool for downloading files from the internet. -y automatically answer yes
-
-#STEP3: systemctl enable mariab
-
-          Configures MariaDB to start automatically at system boot.
-          
-#STEP4: systemctl start mariadb
-
-          Starts the MariaDB service immediately.
-          
-#STEP5: yum -y update:
-
-           Updates all installed packages on the system to their latest versions
+       -It takes full administrative privileges from root user to modify,create and install software after identifying password prompt.It changes symbol to #
+       - Yum package manager is used to install two packages i.e mariadb-server and wget which is a command line tool for downloading files from the internet. -y automatically answer yes
+       -Configures MariaDB to start automatically at system boot.
+       -Starts the MariaDB service immediately.
+       -Updates all installed packages on the system to their latest versions
            
-               SET Environmental variables
-   DBName=ec2RDS
-   DBPassword=unesh12345
-   DBRootPaasword=admin12345
-   DBUser=ec2dbuser
+   #SET Environmental variables
+        DBName=ec2RDS
+        DBPassword=unesh12345
+        DBRootPaasword=admin12345
+        DBUser=ec2dbuser
 
             
              Database Setup on EC2 Instance:
