@@ -54,6 +54,31 @@ CREATE TABLE table1 (id INT, name VARCHAR(45));
 INSERT INTO table1 VALUES(1, 'Allice'), (2, 'Ross Linn'), (1, 'Broda V'), (2, 'Annie Marrie');
 SELECT * FROM table1;
 
+
+
+ Go to Amazon RDS and setup the RDS database instance
+   -create a subnet group where three subnet with their respective AZ shows for multi-AZ backup purpose
+   - click on Database
+       -choose: Standard
+       -Engine Option: MariaDB
+       -Template:free tier
+     *Setting:
+        -type name:
+        -credential settings i.e master username and password
+        -Instance configuration: Burstable Classes
+        - storage: gp2
+        - Availbilty:
+        - connectivity: don't connect ec2
+        - vpc and subnet groups, public access= no, vpc security group, A.Z= no preference, advance configuration i.e port number, Database authentication:password
+        - Monitoring:enable
+        - additional configuration:
+                        inital name: first_rds_db
+                        backup and maintenance : disable, no preference for window
+                        Deletion Protection: disable
+       - LAUNCH RDS INSTANCE
+
+
+
 Migration of Database in EC2 Instance to RDS Database:
     STEP1:  mysqldump -u <username> -p <databasename> ec2db.sql
 
