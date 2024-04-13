@@ -1,7 +1,7 @@
 # Migration-of-EC2-instance-database-to-RDS-databse-instance
 ## We are Migrating  MariaDB database created on  EC2 instance database to RDS database instance in different multiple zone
 
-      VideoLinK:https://drive.google.com/file/d/16skpaT53i4xs8yYMaOjsSNERE8M8j2kM/view?usp=sharing
+      VideoLinK:https:[//drive.google.com/file/d/16skpaT53i4xs8yYMaOjsSNERE8M8j2kM/view?usp=sharing](https://www.linkedin.com/posts/unesh-kushwaha-4aa195224_project2-github-aws-activity-7184794834056962048-r1GG?utm_source=share&utm_medium=member_desktop)
  
  #Step1: Created a VPC name 'first-VPC' 
  
